@@ -1,0 +1,32 @@
+after installing eksctl,kubectl,iam role
+
+eksctl create cluster \
+    --region ap-southeast-1 \
+  --node-type t3.medium \
+  --nodes 3 \
+  --name new-cluster
+
+
+goto eks dashboard
+goto ec2 dashboard
+
+
+after creation of 3 slave nodes
+
+one plugin will be add manually
+
+https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html -----it is used to install plug in
+
+3 cmnds will be there
+after the installation cluster will be n running condition
+
+
+
+if u deleted u r key pair cluster automatically generated nodes 
+for deletion
+
+delete cloud formation
+delete vpc
+delete natgateway
+delete eks  
+delete ec2
