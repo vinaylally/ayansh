@@ -1,0 +1,65 @@
+sudo su -
+
+docker installing:
+
+curl -fsSL https://get.docker.com -o install-docker.sh
+sudo sh install-docker.sh
+
+check whether kubectl installed r not:
+
+ sudo kubectl version --short --client96k
+
+installing kubectl:
+
+ curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.28.1/2023-09-14/bin/linux/amd64/kubectl
+
+exicute permissions:
+ 
+chmod +x ./kubectl
+
+Copy the binary to a folder in your PATH. If you have already installed a version of kubectl:
+
+mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
+
+check the version:
+
+ kubectl version
+
+create a file to install kind with nodes:
+
+vim config.yml
+
+
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+# One control plane node and three "workers".
+#
+# While these will not add more real compute capacity and
+# have limited isolation, this can be useful for testing
+# rolling updates etc.
+#
+# The API-server and other control plane components will be
+# on the control-plane node.
+#
+# You probably don't need this unless you are testing Kubernetes itself.
+nodes:
+- role: control-plane
+- role: worker
+- role: worker
+- role: worker
+
+creating cluster:
+
+ sudo kind create cluster --name mycluster --config=config.yml
+
+list of container;
+
+ sudo docker container ls
+
+go into the container:
+
+sudo docker exec -it 6869f6569c79 bash
+
+see the nodes created:
+
+ kubectl get nodes
